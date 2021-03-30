@@ -157,11 +157,8 @@ console.log("dit zijn de Marvel namen:", marvelName)
 //Tel het gewicht van alle superhelden van DC Comics bij elkaar op. 
 const heroWeights = DCheroes.map(hero => {
     if (hero.weight !== "unknown") {
-        // de Hero weights zijn in de data opgenamen als strings, e.g: '40'
-        // Deze moet je even parsen naar een integer, zodat je er mee kunt rekenen.
         return parseInt(hero.weight, 10);
     } else {
-        // wanneer het gewicht dus "unknown" is, dan wil je het gewicht van 0 optellen.
         return 0;
     }
 });
@@ -171,3 +168,19 @@ const addedWeightOfHeroes = heroWeights.reduce((a, b) => {
 });
 
 console.log("TotalWeight of DC Comics:", addedWeightOfHeroes);
+
+//Bonus: zoek de zwaarste superheld!
+
+const heroWeights2 = superheroes.map(hero => {
+    if (hero.weight !== "unknown") {
+        return parseInt(hero.weight, 10);
+    } else {
+        return 0;
+    }
+});
+
+var max = heroWeights2.reduce(function (a, b) {
+    return Math.max(a, b);
+});
+
+console.log(max)
