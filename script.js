@@ -184,3 +184,24 @@ var max = heroWeights2.reduce(function (a, b) {
 });
 
 console.log(max)
+
+// 8 Bonus: vind de zwaarste superheld!
+// First cast all values to a number or 0 if unknown
+const allHeroes = superheroes.map(hero => {
+    const weight = hero.weight !== "unknown" ? parseInt(hero.weight) : 0;
+    hero.weight = weight;
+    return hero;
+});
+const heaviestHero = allHeroes.reduce(
+    (currentHeaviestHero, currentHero) => {
+        if (currentHero.weight > currentHeaviestHero.weight) {
+            return currentHero;
+        } else {
+            return currentHeaviestHero;
+        }
+    },
+    allHeroes[0]
+    // met deze laatste waarde geef je aan wat de initiele waarde moet zijn van de functie
+);
+
+console.log("Heaviest hero:", heaviestHero);
