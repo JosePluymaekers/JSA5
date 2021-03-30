@@ -110,7 +110,7 @@ const superheroes = [
 const heroNames = superheroes.map((superheroes) => {
     return superheroes.name
 });
-console.log(heroNames)
+console.log("Dit zijn alle namen van superhelden:", heroNames)
 
 //Maak een array van alle "lichte" superhelden (< 190 pounds)
 
@@ -118,7 +118,7 @@ const lightHeroes = superheroes.filter((superheroes) => {
     return superheroes.weight <= 190
 });
 
-console.log(lightHeroes)
+console.log("Dit zijn de lichte superhelden:", lightHeroes)
 
 
 //Maak een array met de namen van de superhelden die 200 pounds wegen
@@ -134,4 +134,40 @@ const heavySuperHeroNames = heavySuperHeroes.map(hero => {
     return hero.name;
 });
 
-console.log(heavySuperHeroNames)
+console.log("Dit zijn zware superhelden:", heavySuperHeroNames)
+
+
+//Maak een array met alle comics waar de superhelden hun "first appearances" hebben gehad
+const heroFirstAppearance = superheroes.map((superheroes) => {
+    return superheroes.first_appearance
+});
+console.log("als eerste verschenen in:", heroFirstAppearance)
+
+//Maak een array met alle superhelden van DC Comics. 
+const DCheroes = superheroes.filter(DChero => DChero.publisher == "DC Comics");
+const DCname = DCheroes.map(hero => hero.name);
+console.log("dit zijn de DC comics namen:", DCname)
+
+//Is dat gelukt? Herhaal de bovenstaande functie dan en maak ook een array met alle superhelden van Marvel Comics.
+const marvelHeroes = superheroes.filter(marvelHero => marvelHero.publisher == "Marvel Comics");
+const marvelName = marvelHeroes.map(hero => hero.name);
+console.log("dit zijn de Marvel namen:", marvelName)
+
+
+//Tel het gewicht van alle superhelden van DC Comics bij elkaar op. 
+const heroWeights = DCheroes.map(hero => {
+    if (hero.weight !== "unknown") {
+        // de Hero weights zijn in de data opgenamen als strings, e.g: '40'
+        // Deze moet je even parsen naar een integer, zodat je er mee kunt rekenen.
+        return parseInt(hero.weight, 10);
+    } else {
+        // wanneer het gewicht dus "unknown" is, dan wil je het gewicht van 0 optellen.
+        return 0;
+    }
+});
+
+const addedWeightOfHeroes = heroWeights.reduce((a, b) => {
+    return a + b
+});
+
+console.log("TotalWeight of DC Comics:", addedWeightOfHeroes);
